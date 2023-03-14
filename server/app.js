@@ -21,6 +21,7 @@ mongoose.connect(process.env.DB_URI, {
 
 // routes prefix
 app.use('/api/post', require('./routes/routes'));
+app.use('/api/med', require('./routes/medroutes'));
 
 // start server
 app.listen(port, () => console.log(`server has started and running on port ${port}`));
