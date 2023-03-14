@@ -7,46 +7,52 @@
           color="grey-darken-1"
           size="32"
         ></v-avatar> -->
-        <nav class="navigation">
-          <router-link to="/123" >Add Patient</router-link>
-        </nav>
-
-        <v-btn
-          v-for="link in links"
-          :key="link"
-          variant="text"
+      
+        <router-link to="/">
+        <v-btn variant="tonal" value="Home" >Home</v-btn>
+        </router-link>
+          <router-link to="/add-post">
+          <v-btn variant="tonal" value="Add Patient" >Add Patient</v-btn>
+          </router-link>
+        
+        
+        <!-- <v-btn
+        v-for="link in links"
+        :key="link"
+        variant="text"
         >
-          {{ link }}
-        </v-btn>
-
-
-        <v-responsive max-width="260">
-          <v-text-field
-            density="compact"
-            hide-details
-            variant="solo"
-          ></v-text-field>
-        </v-responsive>
-      </v-container>
-    </v-app-bar>
-
-    <v-main class="bg-grey-lighten-3">
-      <v-container>
+        {{ link }} 
+        </v-btn> -->
+      
+      <!-- <v-responsive max-width="260">
+        <v-text-field
+        density="compact"
+        hide-details
+        variant="solo"
+        to="/api/med"
+        ></v-text-field> 
+      </v-responsive> -->
+    </v-container>
+  </v-app-bar>
+  
+  <v-main class="bg-grey-lighten-3">
+    <v-container>
         <v-row>
           <v-col>
             <v-sheet
-              min-height="70vh"
-              rounded="lg"
+            min-height="800"
             >
+            <router-view/>
             </v-sheet>
           </v-col>
         </v-row>
-      </v-container>
+    </v-container>
     </v-main>
   </v-app>
 </template>
 
 <script>
+// import AddPatient from './views/AddPatient.vue'
   export default {
     data: () => ({
       links: [
