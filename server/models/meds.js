@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const medsSchema = mongoose.Schema({
     nume: String,
-    gramaj: Number,
+    gramaj: String,
     forma: String,
-    dataExp: Date,
-    stock: Number,
+    dataExp: String,
+    stock: String,
     created: {
         type: Date,
         default: Date.now

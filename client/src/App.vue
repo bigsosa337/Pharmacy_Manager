@@ -11,9 +11,12 @@
         <router-link to="/">
         <v-btn variant="tonal" value="Home" >Home</v-btn>
         </router-link>
-          <router-link to="/add-post">
-          <v-btn variant="tonal" value="Add Patient" >Add Patient</v-btn>
-          </router-link>
+        <router-link to="/add-post">
+        <v-btn variant="tonal" value="Add Patient" >Add Patient</v-btn>
+        </router-link>
+        <router-link to="/meds">
+        <v-btn variant="tonal" value="View Meds" >View Meds</v-btn>
+        </router-link>
           
         
         

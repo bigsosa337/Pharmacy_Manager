@@ -5,14 +5,26 @@
         <v-col sm="10" class="mx-auto">
           <v-card class="pa-5">
             <v-card-title>Edit Patient</v-card-title>
-            <v-divider></v-divider>
             <v-form ref="form" @submit.prevent="updateForm" class="pa-5" enctype="multipart/form-data" method="post">
-                 <v-text-field v-model="post.title"  label="Title" required class="input"
-                 ></v-text-field>
-                 <v-text-field v-model="post.category"  label="Category" required class="input"
-                 ></v-text-field>
-                 <v-text-field v-model="post.content" :rules="[v => !!v || 'Required']" label="Content" required class="input"
-                 ></v-text-field>
+               <v-text-field v-model="post.nume" :rules="rules" label="Nume"  class="input"
+               ></v-text-field>
+               <v-text-field v-model="post.prenume" :rules="rules" label="Prenume"  class="input"
+               ></v-text-field>
+               <v-text-field v-model="post.cnp" :rules="rules" label="CNP"  class="input"
+               ></v-text-field>
+               <v-text-field v-model="post.adresa" :rules="rules" label="Adresa" required class="input"
+               ></v-text-field>
+               <v-select
+               :items="items"
+               label="Tip Adresa"
+               v-model="tipAdresa"
+               required
+               >
+              </v-select>
+              <v-text-field v-model="post.varsta" :rules="[v => !!v || 'Required']" label="Varsta" required class="input"
+                ></v-text-field>
+                <v-text-field v-model="post.telefon" :rules="rules" label="Numar telefon" required class="input"
+                ></v-text-field>
                 <v-btn type="submit" class="mt-3" color="success">Update Patient</v-btn>
             </v-form>
           </v-card>
@@ -35,11 +47,15 @@
     data() {
       return {
         rules: [(value) =>!!value || "This field is required!"],
+        items: [ 'Acasa', 'Munca', 'Adresa Alternativa', 'Alta'],
         post: {
-          title: "",
-          category: "",
-          content: "",
-          image: "",
+          nume: "",
+          prenume: "",
+          cnp: "",
+          adresa: "",
+          tipAdresa: "",
+          telefon: "",
+          varsta: "",
         },
           image: "",
       }
@@ -51,9 +67,14 @@
     methods: {
       async updateForm() {
         const formData = new FormData();
-        formData.append('title', this.post.title);
-        formData.append('category', this.post.category);
-        formData.append('content', this.post.content);
+        formData.append('nume', this.post.nume);
+        formData.append('prenume', this.post.prenume);
+        formData.append('cnp', this.post.cnp);
+        formData.append('adresa', this.post.adresa);
+        formData.append('tipAdresa', this.post.tipAdresa);
+        formData.append('telefon', this.post.telefon);
+        formData.append('varsta', this.post.varsta);
+
         if(this.$refs.form.validate()) {
           const response = await API.updatePost(this.$route.params.id, formData);
           this.$router.push({ name:'home', params: {message: response.message} });

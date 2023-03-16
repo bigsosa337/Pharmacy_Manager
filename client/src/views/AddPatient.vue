@@ -7,19 +7,33 @@
           <v-card-title>Add New Patient</v-card-title>
           <v-divider></v-divider>
           <v-form ref="form" @submit.prevent="submitForm" class="pa-5" enctype="multipart/form-data" method="post">
-               <v-text-field v-model="post.title" :rules="rules" label="Title"  class="input"
+               <v-text-field v-model="post.nume" :rules="rules" label="Nume"  class="input"
                ></v-text-field>
-               <v-text-field v-model="post.category" :rules="rules" label="Category" required class="input"
+               <v-text-field v-model="post.prenume" :rules="rules" label="Prenume"  class="input"
                ></v-text-field>
-               <v-text-field v-model="post.content" :rules="[v => !!v || 'Required']" label="Content" required class="input"
+               <v-text-field v-model="post.cnp" :rules="rules" label="CNP"  class="input"
                ></v-text-field>
-              <v-btn type="submit" class="mt-3" color="primary">Add Patient</v-btn>
-          </v-form>
-        </v-card>
-        
-      </v-col>
-    </v-row>
-  </v-container>
+               <v-text-field v-model="post.adresa" :rules="rules" label="Adresa" required class="input"
+               ></v-text-field>
+               <v-select
+               :items="items"
+               label="Tip Adresa"
+               v-model:items="tipAdresa"
+               required
+               update:modelValue
+               >
+              </v-select>
+              <v-text-field v-model="post.varsta" :rules="[v => !!v || 'Required']" label="Varsta" required class="input"
+                ></v-text-field>
+                <v-text-field v-model="post.telefon" :rules="rules" label="Numar telefon" required class="input"
+                ></v-text-field>
+                <v-btn type="submit" class="mt-3" color="primary">Add Patient</v-btn>
+              </v-form>
+            </v-card>
+            
+          </v-col>
+        </v-row>
+      </v-container>
 </template>
 
 <script>
@@ -31,7 +45,6 @@ import API from '../api'
 
 export default {
   name: 'AddPatient',
-
   data() {
     return {
       rules: [
@@ -41,68 +54,37 @@ export default {
         return 'This field is required.'
       },
     ],
+    items: [ 'Acasa', 'Munca', 'Adresa Alternativa', 'Alta'],
       post: {
-        title: "",
-        category: "",
-        content: "",
-        image: "",
+        nume: "",
+        prenume: "",
+        cnp: "",
+        adresa: "",
+        tipAdresa: "",
+        telefon: "",
+        varsta: "",
       },
-      // image:"",
-      // prenume:"",
-      // nume:"",
-      // cnp:"",
-      // telefon:"",
-      // adresa:"",
-      // TipAdresa:"",
-      // valid: null,
-      // validators: {
-        //   required: value => !!value || 'This field is required'
-        // }
-        image: "",
     }
   },
   methods: {
-    selectFile(event) {
-      // this.image = file[0]
-      // console.log(file[1])
-      // console.log(this.image.name)
-      var files = event.target.files || event.dataTransfer.files;
-      if (!files.length) return;
-      var file = files[0];
-      this.filename = file.name;
-      this.createImage(files[0]);
-    },
     async submitForm() {
       const formData = new FormData();
-      formData.append('image', this.image);
-      formData.append('title', this.post.title);
-      formData.append('category', this.post.category);
-      formData.append('content', this.post.content);
-      if(this.$refs.form.validate() && this.post.category.length) {
+      formData.append('nume', this.post.nume);
+      formData.append('prenume', this.post.prenume);
+      formData.append('cnp', this.post.cnp);
+      formData.append('adresa', this.post.adresa);
+      formData.append('tipAdresa', this.post.tipAdresa);
+      formData.append('telefon', this.post.telefon);
+      formData.append('varsta', this.post.varsta);
+
+      if(this.$refs.form.validate()) {
         const response = await API.addPost(formData);
         this.$router.push({ name:'home', params: {message: response.message} });
       } else {
         alert("TYPE IN THE REQUIRED FORMS");
       }
-    
+      // && this.post.category.length
     },
-    addPatient() {
-      let requestParameters = {...utils.globalRequestParameters};
-      let data = {};
-      data.prenume = this.prenume;
-      data.nume = this.nume;
-      data.cnp = this.cnp;
-      data.telefon = this.telefon;
-      data.adresa= this.adresa;
-      data.TipAdresa = this.TipAdresa;
-
-      requestParameters.body = JSON.stringify(data);
-      fetch(utils.url + "users", requestParameters)
-        .then((res) => res.json())
-        .then((res) => {
-          
-        })
-    }
   }
 
 };

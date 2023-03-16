@@ -1,14 +1,10 @@
 <template>
-    <v-container>
-        <v-alert  close-text="Close Alert" title="Alert" type="success" color="green accent-4" closeable v-if="this.$route.params.message">{{ this.$route.params.message }}</v-alert>
-        <v-row no-gutters>
-            <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id" >
-                <v-card class="pa-1" :to="{ name:'post', params: {id: post._id}}">
+    <v-card class="pa-1" :to="{ name:'med', params: {id: med._id}}">
                     <v-card-title class="headline" >
-                        {{ post.nume }} {{ post.prenume }}
+                            med ID {{ med._id }}
                     </v-card-title>
                     <v-card-subtitle>
-                        Age: {{ post.varsta }}
+                        Age: 
                     </v-card-subtitle>
                     <v-divider></v-divider>
 
@@ -16,28 +12,36 @@
                         Open
                     </v-btn>
                         <v-card-text class="py-0">
-                            <p>{{ post.telefon }}</p>
+                            <p></p>
                         </v-card-text>
                 </v-card>
-            </v-col>
-        </v-row>
-    </v-container>
   </template>
   
 
  <script>
 import API from '../api'
 
+
 export default {
     name: "HomePage",
+    props: {
+        med: Object,
+    },
     data() {
         return {
             posts:[],
         };
     },
     async created() {
-        this.posts = await API.getAllPost();
+        this.posts = await API.getAllMeds();
     }
 }
 
 </script>
+
+<style scoped>
+.pa-1 {
+    margin: 10px 0px 15px 0px;
+}
+
+</style>
