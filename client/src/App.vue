@@ -14,6 +14,7 @@
           <router-link to="/add-post">
           <v-btn variant="tonal" value="Add Patient" >Add Patient</v-btn>
           </router-link>
+          
         
         
         <!-- <v-btn
@@ -35,15 +36,15 @@
     </v-container>
   </v-app-bar>
   
-  <v-main class="bg-grey-lighten-3">
-    <v-container>
+  <v-main class="bg-grey-lighten-3" id="mainbody">
+    <v-container id="body">
         <v-row>
           <v-col>
-            <v-sheet
-            min-height="800"
-            >
+            <!-- <v-sheet
+             min-height="800"
+            >  -->
             <router-view/>
-            </v-sheet>
+            <!-- </v-sheet> -->
           </v-col>
         </v-row>
     </v-container>
@@ -64,3 +65,19 @@
     }),
   }
 </script>
+
+<style>
+#mainbody{
+  background-image: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1544&q=80");
+  /* -webkit-filter:blur(5px); */
+  background-position: center;
+  background-size: cover;
+}
+#body {
+  backdrop-filter: blur(5px);
+  padding:55px;
+  filter: drop-shadow(0 0 0.75rem rgb(83, 83, 83));
+
+}
+
+</style>

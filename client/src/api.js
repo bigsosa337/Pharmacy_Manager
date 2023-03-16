@@ -1,7 +1,9 @@
 import axios from 'axios'
-const url = "/api/post"
+const url = "/api/post/"
+const url1 = "/api/med"
 
 export default class API {
+    //=======================================FOR PATIENTS=============================
     static async getAllPost() {
         const res = await axios.get(url);
         return res.data;
@@ -20,6 +22,27 @@ export default class API {
     }
     static async deletePost(id) {
         const res = await axios.delete(`${url}/${id}`);
+        return res.data;
+    }
+    //=======================================FOR MEDICINE============================
+    static async getAllMeds() {
+        const res = await axios.get(url1);
+        return res.data;
+    }
+    static async getSingleMed(id) {
+        const res = await axios.get(`${url1}/${id}`);
+        return res.data;
+    }
+    static async addMed(post) {
+        const res = await axios.post(url1,post);
+        return res.data;
+    }
+    static async updateMed(id, med) {
+        const res = await axios.put(`${url1}/${id}`, med);
+        return res.data;
+    }
+    static async deleteMed(id) {
+        const res = await axios.delete(`${url1}/${id}`);
         return res.data;
     }
 }
