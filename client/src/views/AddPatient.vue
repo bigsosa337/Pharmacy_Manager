@@ -18,9 +18,7 @@
                <v-select
                :items="items"
                label="Tip Adresa"
-               v-model:items="tipAdresa"
-               required
-               update:modelValue
+               v-model="post.tipAdresa"
                >
               </v-select>
               <v-text-field v-model="post.varsta" :rules="[v => !!v || 'Required']" label="Varsta" required class="input"

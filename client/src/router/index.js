@@ -5,6 +5,7 @@ import PatientPage from '../views/PatientPage'
 import EditPatient from '../views/EditPatient'
 import MedList from '../views/MedList'
 import MedPage from '../views/MedPage'
+import AddMeds from '../views/AddMeds'
 
 
 const routes = [
@@ -37,6 +38,11 @@ const routes = [
     path: '/med/:id',
     name: 'med',
     component: MedPage
+  },
+  {
+    path: '/add-meds/',
+    name: 'addMeds',
+    component: AddMeds
   }
 ]
 

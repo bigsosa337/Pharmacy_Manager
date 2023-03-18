@@ -22,11 +22,11 @@
                         <h3>{{ post._id }}</h3>
                     </v-card-subtitle>
                     <v-card-text class="grey--text">
-                        <p>Nume: {{ post.nume }} Prenume: {{ post.prenume }}</p>
-                        <p>CNP {{ post.cnp }}</p>
-                        <p>telefon: {{ post.telefon }}</p>
-                        <p>Adresa: {{ post.adresa }}</p>
-                        <p>Tip Adresa: {{ post.tipAdresa }}</p>
+                        <p>Nume: {{ post.nume }}</p>
+                        <p>CNP {{ post.gramaj }}</p>
+                        <p>telefon: {{ post.forma }}</p>
+                        <p>Adresa: {{ post.dataExp }}</p>
+                        <p>Tip Adresa: {{ post.stock }}</p>
                     </v-card-text>
                 </v-card>
             </v-col>

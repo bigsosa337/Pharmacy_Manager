@@ -92,8 +92,8 @@ module.exports = class API {
         // res.send('posting method accessed');
         const body = req.body;
         try {
-            await Meds.create(body);
-            res.status(200).json({ message: 'Post successfuly added'});
+            await Meds.post(body);
+            res.status(201).json({ message: 'Post successfuly added'});
         } catch (err) {
             res.status(400).json({ message: err.message });
         }

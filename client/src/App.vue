@@ -14,6 +14,9 @@
         <router-link to="/add-post">
         <v-btn variant="tonal" value="Add Patient" >Add Patient</v-btn>
         </router-link>
+        <router-link to="/add-meds">
+        <v-btn variant="tonal" value="Add Meds" >Add Meds</v-btn>
+        </router-link>
         <router-link to="/meds">
         <v-btn variant="tonal" value="View Meds" >View Meds</v-btn>
         </router-link>

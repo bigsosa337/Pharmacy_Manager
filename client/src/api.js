@@ -1,6 +1,6 @@
 import axios from 'axios'
 const url = "/api/post/"
-const url1 = "/api/med"
+const url1 = "/api/med/"
 
 export default class API {
     //=======================================FOR PATIENTS=============================
@@ -33,8 +33,8 @@ export default class API {
         const res = await axios.get(`${url1}/${id}`);
         return res.data;
     }
-    static async addMed(post) {
-        const res = await axios.post(url1,post);
+    static async addMed(med) {
+        const res = await axios.post(url1,med);
         return res.data;
     }
     static async updateMed(id, med) {
