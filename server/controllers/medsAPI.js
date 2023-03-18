@@ -1,7 +1,5 @@
-const Post = require('../models/posts');
 const Meds = require('../models/meds');
 const fs = require('fs');
-const meds = require('../models/meds');
 
 
 module.exports = class API {  
@@ -29,10 +27,11 @@ module.exports = class API {
      //post item
      static async postMed(req, res) {
         // res.send('posting method accessed');
+        console.log("------------------------------------------------------------------")
         const body = req.body;
         try {
             await Meds.create(body);
-            res.status(200).json({ message: 'Post successfuly added'});
+            res.status(201).json({ message: 'Post successfuly added'});
         } catch (err) {
             res.status(400).json({ message: err.message });
         }

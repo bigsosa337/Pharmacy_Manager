@@ -12,15 +12,27 @@
                ></v-text-field>
                <v-text-field v-model="post.cnp" :rules="rules" label="CNP"  class="input"
                ></v-text-field>
-               <v-text-field v-model="post.adresa" :rules="rules" label="Adresa" required class="input"
+               <v-text-field v-model="post.adresa" :rules="rules" label="adresa" required class="input"
                ></v-text-field>
                <v-select
                :items="items"
-               label="Tip Adresa"
-               v-model="tipAdresa"
+               label="Tip adresa"
+               v-model="post.tipadresa"
                required
                >
               </v-select>
+              <v-container v-if="adresaSecundara">
+                <v-text-field v-model="post.adresa2" :rules="rules" label="Adresa Secundara" required class="input"
+                ></v-text-field>
+                <v-select
+                :items="items"
+                label="Tip Adresa"
+                v-model="post.tipadresa2"
+                required
+                >
+              </v-select>
+                
+              </v-container>
               <v-text-field v-model="post.varsta" :rules="[v => !!v || 'Required']" label="Varsta" required class="input"
                 ></v-text-field>
                 <v-text-field v-model="post.telefon" :rules="rules" label="Numar telefon" required class="input"
@@ -35,8 +47,6 @@
   </template>
   
   <script>
-  import { defineComponent } from 'vue';
-  import utils from '../utils'
   import API from '../api'
   // Components
   
@@ -46,16 +56,19 @@
   
     data() {
       return {
+        adresaSecundara: true,
         rules: [(value) =>!!value || "This field is required!"],
-        items: [ 'Acasa', 'Munca', 'Adresa Alternativa', 'Alta'],
+        items: [ 'Acasa', 'Munca', 'adresa Alternativa', 'Alta'],
         post: {
           nume: "",
           prenume: "",
           cnp: "",
           adresa: "",
-          tipAdresa: "",
+          tipadresa: "",
           telefon: "",
           varsta: "",
+          adresa2: "",
+          tipadresa2: "",
         },
           image: "",
       }
@@ -71,7 +84,9 @@
         formData.append('prenume', this.post.prenume);
         formData.append('cnp', this.post.cnp);
         formData.append('adresa', this.post.adresa);
-        formData.append('tipAdresa', this.post.tipAdresa);
+        formData.append('tipadresa', this.post.tipadresa);
+        formData.append('adresa2', this.post.adresa2);
+        formData.append('tipadresa2', this.post.tipadresa2);
         formData.append('telefon', this.post.telefon);
         formData.append('varsta', this.post.varsta);
 

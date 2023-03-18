@@ -15,7 +15,7 @@
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vue3-date-time-picker": "^2.8.3",
-    "vuetify": "^3.1.10",
+    "vuetify": "^3.1.4",
     "vuex": "^4.1.0",
     "wave-ui": "^3.0.4",
     "webfontloader": "^1.0.0"

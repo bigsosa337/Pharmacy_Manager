@@ -4,9 +4,9 @@
       <v-row no-gutters  justify="center">
         <v-col sm="10" class="mx-auto">
           <v-card class="pa-5">
-            <v-card-title>Add New Meds</v-card-title>
+            <v-card-title>Edit Meds</v-card-title>
             <v-divider></v-divider>
-            <v-form ref="form" @submit.prevent="submitForm" class="pa-5" enctype="multipart/form-data" method="post">
+            <v-form ref="form" @submit.prevent="updateForm" class="pa-5" enctype="multipart/form-data" method="post">
                  <v-text-field  v-model="post.nume" :rules="rules" label="Nume Medicament"  class="input"
                  ></v-text-field>
                  
@@ -29,7 +29,7 @@
                  ></v-text-field>
                  <v-text-field type="number" v-model="post.stock" :rules="rules" label="Stoc" required class="input"
                  ></v-text-field>
-                  <v-btn type="submit" class="mt-3" color="primary">Add New Medicine</v-btn>
+                  <v-btn type="submit" class="mt-3" color="primary">Edit Medicine</v-btn>
                 </v-form>
               </v-card>
               
@@ -70,8 +70,12 @@
         },
       }
     },
+    async created() {
+        const response = await API.getSingleMed(this.$route.params.id);
+        this.post = response;
+    },
     methods: {
-      async submitForm() {
+      async updateForm() {
         const formData = new FormData();
         formData.append('nume', this.post.nume);
         formData.append('gramaj', this.post.gramaj);
@@ -82,7 +86,7 @@
         console.log(this.post.producator)
   
         if(this.$refs.form.validate()) {
-          const response = await API.addMed(formData);
+          const response = await API.updateMed(this.$route.params.id, formData);
           this.$router.push({ name:'view-meds', params: {message: response.message} });
         } else {
           alert("TYPE IN THE REQUIRED FORMS");

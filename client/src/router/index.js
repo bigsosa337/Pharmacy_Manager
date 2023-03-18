@@ -6,7 +6,8 @@ import EditPatient from '../views/EditPatient'
 import MedList from '../views/MedList'
 import MedPage from '../views/MedPage'
 import AddMeds from '../views/AddMeds'
-
+import EditMeds from '../views/EditMeds'
+import ShowReqs from '../views/ShowReqs'
 
 const routes = [
   {
@@ -43,6 +44,16 @@ const routes = [
     path: '/add-meds/',
     name: 'addMeds',
     component: AddMeds
+  },
+  {
+    path: '/edit-med/:id',
+    name: 'edit-med',
+    component: EditMeds
+  },
+  {
+    path: '/reqs/',
+    name: 'reqs',
+    component: ShowReqs
   }
 ]
 

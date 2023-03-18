@@ -6,7 +6,7 @@
         <v-card class="pa-5">
           <v-card-title>Add New Patient</v-card-title>
           <v-divider></v-divider>
-          <v-form ref="form" @submit.prevent="submitForm" class="pa-5" enctype="multipart/form-data" method="post">
+          <v-form ref="form" @submit.prevent="submitForm" class="pa-5 " enctype="multipart/form-data" method="post">
                <v-text-field v-model="post.nume" :rules="rules" label="Nume"  class="input"
                ></v-text-field>
                <v-text-field v-model="post.prenume" :rules="rules" label="Prenume"  class="input"
@@ -18,9 +18,26 @@
                <v-select
                :items="items"
                label="Tip Adresa"
-               v-model="post.tipAdresa"
+               v-model="post.tipadresa"
+               required
                >
               </v-select>
+              <v-container v-if="adresaSecundara">
+                <v-text-field v-model="post.adresa2" :rules="rules" label="Adresa" required class="input"
+                ></v-text-field>
+                <v-select
+                :items="items"
+                label="Tip Adresa"
+                v-model="post.tipadresa2"
+                required
+                >
+              </v-select>
+                
+              </v-container>
+              <v-row class="d-flex justify-center align-center mt-4">
+                <v-btn class="mb-5 " @click="showSecondaryAdress">Adauga Adresa Secundara</v-btn>
+              </v-row>
+                <br>
               <v-text-field v-model="post.varsta" :rules="[v => !!v || 'Required']" label="Varsta" required class="input"
                 ></v-text-field>
                 <v-text-field v-model="post.telefon" :rules="rules" label="Numar telefon" required class="input"
@@ -45,6 +62,7 @@ export default {
   name: 'AddPatient',
   data() {
     return {
+      adresaSecundara: false,
       rules: [
       value => {
         if (value) return true
@@ -58,20 +76,28 @@ export default {
         prenume: "",
         cnp: "",
         adresa: "",
-        tipAdresa: "",
+        tipadresa: "",
         telefon: "",
         varsta: "",
+        adresa2: "",
+        tipadresa2: "",
       },
     }
   },
   methods: {
+    showSecondaryAdress() {
+      this.adresaSecundara = !this.adresaSecundara
+    },
+
     async submitForm() {
       const formData = new FormData();
       formData.append('nume', this.post.nume);
       formData.append('prenume', this.post.prenume);
       formData.append('cnp', this.post.cnp);
       formData.append('adresa', this.post.adresa);
-      formData.append('tipAdresa', this.post.tipAdresa);
+      formData.append('tipadresa', this.post.tipadresa);
+      formData.append('adresa2', this.post.adresa2);
+      formData.append('tipadresa2', this.post.tipadresa2);
       formData.append('telefon', this.post.telefon);
       formData.append('varsta', this.post.varsta);
 

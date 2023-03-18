@@ -8,17 +8,20 @@
           size="32"
         ></v-avatar> -->
       
-        <router-link to="/">
+        <router-link to="/" class="router">
         <v-btn variant="tonal" value="Home" >Home</v-btn>
         </router-link>
-        <router-link to="/add-post">
+        <router-link to="/add-post" class="router">
         <v-btn variant="tonal" value="Add Patient" >Add Patient</v-btn>
         </router-link>
-        <router-link to="/add-meds">
+        <router-link to="/add-meds" class="router">
         <v-btn variant="tonal" value="Add Meds" >Add Meds</v-btn>
         </router-link>
-        <router-link to="/meds">
+        <router-link to="/meds" class="router">
         <v-btn variant="tonal" value="View Meds" >View Meds</v-btn>
+        </router-link>
+        <router-link to="/reqs" class="router">
+        <v-btn variant="tonal" value="Requests" >Requests</v-btn>
         </router-link>
           
         
@@ -84,6 +87,10 @@
   padding:55px;
   filter: drop-shadow(0 0 0.75rem rgb(83, 83, 83));
 
+}
+.router  {
+  margin: 0px 5px 0px 5px;
+  text-decoration: none;
 }
 
 </style>

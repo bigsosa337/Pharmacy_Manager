@@ -5,9 +5,11 @@ const postSchema = mongoose.Schema({
     prenume: String,
     cnp: Number,
     adresa: String,
-    tipAdresa: String,
+    tipadresa: String,
     telefon: String,
     varsta: Number,
+    adresa2: String,
+    tipadresa2: String,
     created: {
         type: Date,
         default: Date.now

@@ -1,6 +1,7 @@
 import axios from 'axios'
 const url = "/api/post/"
-const url1 = "/api/med/"
+const url1 = "/api/meds/"
+const url2 = "/api/reqs/"
 
 export default class API {
     //=======================================FOR PATIENTS=============================
@@ -44,5 +45,10 @@ export default class API {
     static async deleteMed(id) {
         const res = await axios.delete(`${url1}/${id}`);
         return res.data;
+    }
+    //==========================================FOR REQUESTS======================================
+    static async getAllReqs() {
+        const res = await axios.get(url2);
+        return res.data
     }
 }

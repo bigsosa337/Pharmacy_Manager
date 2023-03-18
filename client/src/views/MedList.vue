@@ -1,8 +1,9 @@
 <template>
     <v-container>
         <v-row>
-            <v-col class="pa-3" >
-                <h1>Med Page</h1>
+            <h1>Med Page</h1>
+            <br>
+            <v-col  class="pa-3 mt-9" >
                 <MedComponent
                 :med="elem"
                 v-for="elem in posts"
@@ -33,5 +34,11 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+.pa-3{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
 </style>

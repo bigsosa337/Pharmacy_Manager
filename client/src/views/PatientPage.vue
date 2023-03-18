@@ -8,7 +8,7 @@
                     <v-card-actions class="pb-0" >
                         <v-row class="mt-1 mx-1" >
                             <v-col sm="2">
-                                <v-btn small variant="outlined" color="primary">Age:{{ post.varsta }}</v-btn>
+                                <v-btn  variant="outlined" color="primary">Request</v-btn>
                             </v-col>
                             <v-col sm="10" class="d-flex justify-end">
                                 <v-btn color="warning" @click="edit">Edit</v-btn>
@@ -26,12 +26,13 @@
                         <!-- <h2>Numar telefon</h2> -->
                         <p>Nume: {{ post.nume }} Prenume: {{ post.prenume }}</p>
                         <p>CNP {{ post.cnp }}</p>
-                        <p>telefon: {{ post.telefon }}</p>
+                        <p>Telefon: {{ post.telefon }}</p>
                         <p>Adresa: {{ post.adresa }}</p>
-                        <p>Tip Adresa: {{ post.tipAdresa }}</p>
-                        <!-- <p>{{ post. }}</p>
-                        <p>{{ post.content }}</p> -->
-
+                        <p>Tip adresa: {{ post.tipadresa }}</p>
+                        <span v-if="post.adresa2" >
+                            <p>Adresa secundara: {{ post.adresa2 }}</p>
+                            <p>Tip adresa secundara: {{ post.tipadresa2 }}</p>
+                        </span>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -40,9 +41,13 @@
 </template>
 
 <script>
-import API from '../api'
+import API from '../api';
+import { VListItemContent } from 'vuetify';
 
 export default {
+    components: {
+        VListItemContent,
+    },
     data() {
         return {
             post: {},
