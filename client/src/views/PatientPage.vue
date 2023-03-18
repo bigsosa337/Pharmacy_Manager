@@ -8,7 +8,9 @@
                     <v-card-actions class="pb-0" >
                         <v-row class="mt-1 mx-1" >
                             <v-col sm="2">
-                                <v-btn  variant="outlined" color="primary">Request</v-btn>
+                                <v-btn  variant="outlined" color="primary"
+                                @click="request"
+                                >Request</v-btn>
                             </v-col>
                             <v-col sm="10" class="d-flex justify-end">
                                 <v-btn color="warning" @click="edit">Edit</v-btn>
@@ -54,6 +56,9 @@ export default {
         };
     },
     methods: {
+        request() {
+            this.$router.push("/add-reqs/")
+        },
         edit() {
             this.$router.push("/edit-post/" + this.post._id)
         },

@@ -49,6 +49,23 @@ export default class API {
     //==========================================FOR REQUESTS======================================
     static async getAllReqs() {
         const res = await axios.get(url2);
-        return res.data
+        return res.data;
     }
+    static async getSingleRequest(id) {
+        const res = await axios.get(`${url2}/${id}`);
+        return res.data;
+    }
+    static async addRequest(request) {
+        const res = await axios.post(url2, request);
+        return res.data;
+    }
+    static async updateRequest(id, request) {
+        const res = await axios.put(`${url2}/${id}`, request);
+        return res.data;
+    }
+    static async deleteRequest(id) {
+        const res = await axios.delete(`${url2}/${id}`);
+        return res.data;
+    }
+
 }
