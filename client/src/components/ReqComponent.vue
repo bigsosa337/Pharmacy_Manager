@@ -8,20 +8,29 @@
                 <v-text-field label="Patient Name" v-model="form.nameOfPatient" disabled >
                 </v-text-field>
                 <v-container class="pa-5" v-for="(item, index) in form.meds" :key="index">
-                    <h3>Item {{ index }}</h3>
-                    <br>
+                    <v-row class="mb-5">
+                        <h3>Item {{ index }}</h3>
+                    </v-row>
                     <!-- {{ item }} -->
                     <!-- <v-row> -->
                         <!-- <span> -->
                         <div class="div1" >
                             <label for="name">Name</label>
-                            <v-text-field  label="Name" class="input" 
+                            <!-- <v-text-field  label="Name" class="input" 
                             v-model="item.name"
-                            ></v-text-field>
+                            ></v-text-field> -->
+                            <v-select
+                              :items="items"
+                              label="Name"
+                              v-model="item.name"
+                              required
+                              >
+                            </v-select>
                         </div>
                         <div class="div1">
                             <label for="name">Quantity</label>
                             <v-text-field  label="Price" class="input" 
+                            type="number"
                             v-model="item.quantity"
                             ></v-text-field>
                         </div>
@@ -43,7 +52,6 @@
 
 <script>
 
-import { reactive } from 'vue'
 import API from '../api'
 
 export default {
@@ -51,6 +59,7 @@ export default {
     props: ['patientName'],
     data() {
         return {
+            ids: [],items: [],
             form: {
                 nameOfPatient: this.patientName,
                 meds: [
@@ -59,8 +68,19 @@ export default {
             }
         }
     },
-    created() {
-        this.nameOfPatient = this.$route.params.patientName
+    async created() {
+        try {
+            this.nameOfPatient = this.$route.params.patientName;
+            const response = await API.getAllMeds();
+            let itemArray = response.map(item => item.nume)
+            console.log(itemArray)
+
+            // Assign the value of itemArray to this.itemss
+            this.items = itemArray;
+          // Assign the value of itemArray to this.itemss
+        } catch (error) {
+          console.log(error);
+        }
     },
     methods: {
         addRow() {
