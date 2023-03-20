@@ -1,7 +1,7 @@
 const Post = require('../models/posts');
-const Meds = require('../models/meds');
-const fs = require('fs');
-const meds = require('../models/meds');
+// const Meds = require('../models/meds');
+// const fs = require('fs');
+// const meds = require('../models/meds');
 
 
 module.exports = class API {

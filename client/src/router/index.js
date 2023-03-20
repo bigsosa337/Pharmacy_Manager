@@ -57,7 +57,7 @@ const routes = [
     component: ShowReqs
   },
   {
-    path: '/add-reqs/',
+    path: '/add-reqs/:patientName',
     name: 'add-reqs',
     component: RequestMeds
   }

@@ -13,5 +13,7 @@ const reqSchema = mongoose.Schema({
         default: Date.now
     }
 });
+const Reqs = mongoose.model("Reqs", reqSchema);
+module.exports = Reqs;
 
 module.exports = mongoose.model('Reqs', reqSchema);

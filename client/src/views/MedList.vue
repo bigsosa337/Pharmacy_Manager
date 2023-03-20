@@ -36,7 +36,7 @@ export default {
 
 <style scoped>
 .pa-3{
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     align-content: center;
 }

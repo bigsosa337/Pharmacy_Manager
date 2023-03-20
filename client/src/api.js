@@ -2,6 +2,7 @@ import axios from 'axios'
 const url = "/api/post/"
 const url1 = "/api/meds/"
 const url2 = "/api/reqs/"
+// axios.defaults.baseURL = 'http://localhost:5000';
 
 export default class API {
     //=======================================FOR PATIENTS=============================
@@ -55,12 +56,12 @@ export default class API {
         const res = await axios.get(`${url2}/${id}`);
         return res.data;
     }
-    static async addRequest(request) {
-        const res = await axios.post(url2, request);
+    static async addRequest(post) {
+        const res = await axios.post(url2, post);
         return res.data;
     }
-    static async updateRequest(id, request) {
-        const res = await axios.put(`${url2}/${id}`, request);
+    static async updateRequest(id, post) {
+        const res = await axios.put(`${url2}/${id}`, post);
         return res.data;
     }
     static async deleteRequest(id) {

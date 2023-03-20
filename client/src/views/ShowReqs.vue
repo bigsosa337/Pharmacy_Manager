@@ -1,6 +1,7 @@
 <template>
     <v-container>
         <h1>MEDICINE Requests</h1>
+        <v-btn  @click="deleteSelected" >Delete Selected</v-btn>
         <v-row class="pt-3">
             <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
                 <v-card class="pa-1" >
@@ -11,6 +12,8 @@
                         <div v-for="med in post.meds" :key="med">
                             {{ med.name }} - {{ med.quantity }}
                         </div>
+                        <v-checkbox label="Select for deletion" v-model="selectedItems" :value="post._id" ></v-checkbox>
+
                     </v-card-subtitle>
                 </v-card>
             </v-col>
@@ -27,11 +30,23 @@ export default {
     data() {
         return {
             posts:[],
+            selectedItems: [],
+
         }
     },
     async created() {
         // console.log(meds.length)
         this.posts = await API.getAllReqs();
+    },
+    methods: {
+        async deleteSelected() {
+            console.log(this.selectedItems)
+            for(let i = 0; i < this.selectedItems.length; i++) {
+                const response = await API.deleteRequest(this.selectedItems[i]);
+                this.$router.push({name: 'reqs', params: { message: response.message }})
+            }
+            location.reload();
+        }
     }
 }
 </script>

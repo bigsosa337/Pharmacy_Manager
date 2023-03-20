@@ -7,13 +7,13 @@
                     <!-- <v-img :src="`/${post.image}`" height="250"></v-img> -->
                     <v-card-actions class="pb-0" >
                         <v-row class="mt-1 mx-1" >
-                            <v-col sm="2">
-                                <v-btn  variant="outlined" color="primary"
+                            <v-col sm="3">
+                                <v-btn  variant="flat" color="primary"
                                 @click="request"
                                 >Request</v-btn>
                             </v-col>
-                            <v-col sm="10" class="d-flex justify-end">
-                                <v-btn color="warning" @click="edit">Edit</v-btn>
+                            <v-col sm="9" class="d-flex justify-end">
+                                <v-btn color="warning" @click="edit" variant="outlined">Edit</v-btn>
                                 <v-btn color="red" @click="deleteUser(post._id)">Delete</v-btn>
                                 
                             </v-col>
@@ -57,7 +57,10 @@ export default {
     },
     methods: {
         request() {
-            this.$router.push("/add-reqs/")
+            this.$router.push({
+             name: 'add-reqs',
+             params: { patientName: `${this.post.nume} ${this.post.prenume}` }
+            });        
         },
         edit() {
             this.$router.push("/edit-post/" + this.post._id)

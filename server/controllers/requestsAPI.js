@@ -28,7 +28,9 @@ module.exports = class API {
         try {
             await Reqs.create(body);
             res.status(201).json({ message: 'Req successfully added' });
+            console.log("okOKOKOKOK")
         } catch (err) {
+            console.log("errrrrrrr")
             res.status(400).json({ message: err.message })
         }
     }
