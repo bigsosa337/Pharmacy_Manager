@@ -9,6 +9,7 @@ import AddMeds from '../views/AddMeds'
 import EditMeds from '../views/EditMeds'
 import ShowReqs from '../views/ShowReqs'
 import RequestMeds from '../views/RequestMeds'
+import RequestPage from '../views/RequestPage'
 
 const routes = [
   {
@@ -60,6 +61,11 @@ const routes = [
     path: '/add-reqs/:patientName',
     name: 'add-reqs',
     component: RequestMeds
+  },
+  {
+    path: '/req/:id',
+    name: 'req-page',
+    component: RequestPage
   }
 ]
 

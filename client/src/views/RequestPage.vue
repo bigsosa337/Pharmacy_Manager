@@ -3,7 +3,11 @@
         <v-row>
             <v-col>
                 <v-card>
-                    v
+                  <h2 class="pa-3">Request for: {{ post.nume }}</h2>
+                  <v-card-title ></v-card-title>
+                  <div class="pl-3 pb-1" v-for="med in post.meds" :key="med">
+                            {{ med.name }} - {{ med.quantity }}
+                        </div>
                 </v-card>
             </v-col>
         </v-row>
@@ -18,14 +22,27 @@ export default {
     // name: ShowReqs,
     data() {
         return {
-            posts:[],
+            post:{},
             selectedItems: [],
+            meds:[],
 
         }
     },
     async created() {
         // console.log(meds.length)
-        this.posts = await API.getAllReqs();
+        // const response = await API.getAllReqs();
+        // console.log(response)
+        // // console.log(response[0])
+        // let postid = this.$route.params.id
+        // this.post = response[postid]
+        // console.log(this.post)
+        // const response1 = await API.getAllMeds();
+        // this.meds = response1
+        const response = await API.getAllReqs();
+        this.post = response.find(req => req._id === this.$route.params.id);
+        const response1 = await API.getAllMeds();
+        this.meds = response1;
+        console.log(this.post)
     },
     methods: {
         async deleteSelected() {

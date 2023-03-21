@@ -1,7 +1,7 @@
 import axios from 'axios'
 const url = "/api/post/"
 const url1 = "/api/meds/"
-const url2 = "/api/reqs/"
+const url2 = "/api/reqs"
 // axios.defaults.baseURL = 'http://localhost:5000';
 
 export default class API {

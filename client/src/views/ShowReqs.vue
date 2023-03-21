@@ -15,6 +15,11 @@
                         <v-checkbox label="Select for deletion" v-model="selectedItems" :value="post._id" ></v-checkbox>
 
                     </v-card-subtitle>
+                    <v-btn class="ml-4 mt-3 mb-3" small variant="outlined" color="indigo"
+                    :to="{ name:'req-page', params: { id: post._id }}"
+                    >
+                        Open
+                    </v-btn>
                 </v-card>
             </v-col>
         </v-row>
@@ -46,6 +51,9 @@ export default {
                 this.$router.push({name: 'reqs', params: { message: response.message }})
             }
             location.reload();
+        },
+        viewReq() {
+            
         }
     }
 }
