@@ -8,6 +8,7 @@ const medSchema = mongoose.Schema({
 const reqSchema = mongoose.Schema({
     nume: String,
     meds: [medSchema],
+    status: String,
     created: {
         type: Date,
         default: Date.now

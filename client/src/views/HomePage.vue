@@ -1,8 +1,10 @@
 <template>
     <v-container>
-        <v-alert  close-text="Close Alert" title="Alert" type="success" color="green accent-4" closeable v-if="this.$route.params.message">{{ this.$route.params.message }}</v-alert>
+        <h1>Pacienti</h1>
         <span class="delAllBtn" >
-        <v-btn  @click="deleteSelected" >Delete Selected</v-btn>
+        <v-btn  @click="deleteSelected" v-if="posts.length"
+        class="ma-3"
+        >Delete Selected</v-btn>
         </span>
         <v-row no-gutters>
             <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id" >

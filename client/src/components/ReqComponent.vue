@@ -62,6 +62,7 @@ export default {
             ids: [],items: [],
             form: {
                 nameOfPatient: this.patientName,
+                status: "Pending",
                 meds: [
                     { name: '', quantity: 0 }
                 ]
@@ -96,7 +97,8 @@ export default {
         async submitForm() {
             const data = {
                 nume: this.form.nameOfPatient,
-                meds: this.form.meds
+                meds: this.form.meds,
+                status: this.form.status
             };
         
             // Log the data being sent

@@ -1,5 +1,5 @@
 <template>
-    <v-card  class="pa-1 ma-3" :to="{ name:'med', params: {id: med._id}}">
+    <v-card  class="pa-1 ma-3" :to="{ name:'med', params: {id: post._id}}">
                     <v-card-title class="headline" >
                             {{ med.nume}} <br>
                              de la: {{ med.producator }}
@@ -12,7 +12,11 @@
                     <v-btn class="ml-4 mt-3 mb-3" small variant="outlined" color="indigo" >
                         Deschide
                     </v-btn>
-                        
+                    <v-checkbox label="Select for deletion" v-model="selectedItems"
+                    :value="med._id"
+                    @click.stop
+                    ></v-checkbox>
+
                 </v-card>
   </template>
   
@@ -29,6 +33,7 @@ export default {
     data() {
         return {
             posts:[],
+            selectedItems: [],
         };
     },
     async created() {

@@ -14,7 +14,7 @@
                  v-model="post.dataExp"
                  close-on-auto-apply
                  :enable-time-picker="false"
-                 placeholder="Select Date"
+                 placeholder="Expiration Date"
                  required/>
                 <br>
                 <v-select

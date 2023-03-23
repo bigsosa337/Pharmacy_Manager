@@ -9,6 +9,9 @@
                         {{ post.nume }}
                     </v-card-title>
                     <v-card-subtitle>
+                        Status: {{ post.status }}
+                    </v-card-subtitle>
+                    <v-card-subtitle>
                         <div v-for="med in post.meds" :key="med">
                             {{ med.name }} - {{ med.quantity }}
                         </div>

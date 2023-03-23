@@ -9,19 +9,31 @@
                             <v-col sm="6">
                                 <v-btn class="mr-2" variant="flat" color="success"
                                 @click="approveRequest"
+                                :disabled="isDisabled"
                                 >Approve</v-btn>
-                                <v-btn  variant="outlined" >Decline</v-btn>
+                                <v-btn  variant="outlined"
+                                @click="declineRequest"
+                                :disabled="isDisabled"
+                                >Decline</v-btn>
                             </v-col>
                             <v-col sm="6" class="d-flex justify-end">
-                                <v-btn color="warning" @click="edit" variant="outlined">Edit</v-btn>
-                                <v-btn color="red" variant="text" @click="deleteRequest(post._id)">Delete</v-btn>
+                                <v-btn color="warning" 
+                                @click="edit"
+                                variant="outlined"
+                                :disabled="isDisabled"
+                                >Edit</v-btn>
+                                <v-btn color="red"
+                                variant="text" 
+                                @click="deleteRequest(post._id)"
+                                >Delete</v-btn>
                                 
                             </v-col>
+                            Status: {{ post.status }}
                         </v-row>
                   <v-card-title ></v-card-title>
                   <v-divider class="pb-3"></v-divider>
                   <div class="pl-3 pb-1" v-for="med in post.meds" :key="med">
-                            {{ med.name }} - {{ med.quantity }}
+                            {{ med.name }}: {{ med.quantity }} 
                         </div>
                 </v-card>
                 
@@ -41,6 +53,7 @@ export default {
             post:{},
             selectedItems: [],
             meds:[],
+            isDisabled: false,
 
         }
     },
@@ -51,7 +64,10 @@ export default {
         this.meds = response1;
         console.log(this.post)
         console.log(this.meds)
-
+        this.isDisabled
+        if (this.post.status == "Approved" || this.post.status == "Declined"){
+            this.isDisabled = true
+        }
         
     },
     methods: {
@@ -83,6 +99,8 @@ export default {
             var medId = medFound._id
             console.log(medFound._id)
             const newStock = medFound.stock - medInPost.quantity;
+            //i put the api requests here because its easier to read and understand
+            //since i am only modifying 1 attribute
             const response = await fetch(`/api/meds/${medId}`, {
                 method: 'PUT',
                 headers: {
@@ -92,6 +110,29 @@ export default {
             });
             const data = await response.json();
         }
+        var postId = this.post._id
+        console.log(postId)
+        //i put the api requests here because its easier to read and understand
+        //since i am only modifying 1 attribute
+        const response = await fetch(`/api/reqs/${postId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ status: "Approved"})
+        })
+        location.reload();
+       },
+       async declineRequest() {
+        var postId = this.post._id
+        const response = await fetch(`/api/reqs/${postId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ status: "Declined"})
+        })
+        location.reload();
        }
     }
 }
