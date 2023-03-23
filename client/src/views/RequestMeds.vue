@@ -17,21 +17,20 @@ import { TextField } from '@asigloo/vue-dynamic-forms'
 import ReqComponent  from '../components/ReqComponent'
 
 export default {
-    name: "Patient",
     components: {
         ReqComponent,
     },
     props: {
-      patientName: {
-        type: String,
-        required: true,
-      }
+      // patientName: {
+      //   type: String,
+      //   required: true,
+      // }
     },
-    computed: {
-      patientName() {
-        return this.$route.params.patientName
-      },
-    },
+    // computed: {
+    //   patientName() {
+    //     return this.$route.params.patientName
+    //   },
+    // },
   data() {
     return {
       

@@ -71,6 +71,9 @@ export default {
         
     },
     methods: {
+        edit() {
+            this.$router.push("/edit-req/" + this.post._id)
+        },
         async deleteSelected() {
             console.log(this.selectedItems)
             for(let i = 0; i < this.selectedItems.length; i++) {

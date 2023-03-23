@@ -5,7 +5,7 @@
                 <v-form ref="form" @submit.prevent="submitForm"
                 enctype="multipart/form-data" method="post" 
                 >
-                <v-text-field label="Patient Name" v-model="form.nameOfPatient" disabled >
+                <v-text-field label="Patient Name" v-model="form.nume" disabled >
                 </v-text-field>
                 <v-container class="pa-5" v-for="(item, index) in form.meds" :key="index">
                     <v-row class="mb-5">
@@ -35,7 +35,7 @@
                 <v-btn
                 color="default"
                 type="submit"
-                >Submit Request</v-btn>
+                >Edit Request</v-btn>
                 </v-form>
             </v-col>
         </v-row>
@@ -47,13 +47,12 @@
 import API from '../api'
 
 export default {
-    name: 'ReqComponent',
-    props: ['patientName'],
+    name: 'EditReqComponent',
+    // props: ['patientName'],
     data() {
         return {
             ids: [],items: [],
             form: {
-                nameOfPatient: this.patientName,
                 status: "Pending",
                 meds: [
                     { name: '', quantity: 0 }
@@ -63,17 +62,21 @@ export default {
     },
     async created() {
         try {
-            this.nameOfPatient = this.$route.params.patientName;
             const response = await API.getAllMeds();
             let itemArray = response.map(item => item.nume)
             console.log(itemArray)
-
             // Assign the value of itemArray to this.itemss
             this.items = itemArray;
           // Assign the value of itemArray to this.itemss
         } catch (error) {
           console.log(error);
         }
+        console.log(this.$route.params.id + "11111111111111")
+        const response2 = await API.getAllReqs();
+        this.form = response2.find(req => req._id === this.$route.params.id);
+        console.log(response2)
+        console.log(this.nameOfPatient)
+        
     },
     methods: {
         addRow() {
@@ -92,11 +95,9 @@ export default {
                 meds: this.form.meds,
                 status: this.form.status
             };
-        
             // Log the data being sent
             console.log('Data being sent:', data);
-
-            API.addRequest(data)
+            API.updateRequest(this.form._id, data)
                 .then(response => {
                     // handle successful response
                     this.$router.push({ name:'reqs', params: { message: response.message }})

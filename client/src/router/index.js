@@ -10,6 +10,7 @@ import EditMeds from '../views/EditMeds'
 import ShowReqs from '../views/ShowReqs'
 import RequestMeds from '../views/RequestMeds'
 import RequestPage from '../views/RequestPage'
+import EditRequest from '../views/EditRequest'
 
 const routes = [
   {
@@ -66,6 +67,11 @@ const routes = [
     path: '/req/:id',
     name: 'req-page',
     component: RequestPage
+  },
+  {
+    path: '/edit-req/:id',
+    name: 'edit-req',
+    component: EditRequest
   }
 ]
 
