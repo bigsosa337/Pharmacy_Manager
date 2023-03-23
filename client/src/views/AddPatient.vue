@@ -52,10 +52,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import utils from '../utils'
 import API from '../api'
-// Components
 
 
 export default {
@@ -107,7 +104,6 @@ export default {
       } else {
         alert("TYPE IN THE REQUIRED FORMS");
       }
-      // && this.post.category.length
     },
   }
 
@@ -122,9 +118,6 @@ export default {
     justify-content: center;
     align-content: center;
   }
-  /* .input {
-    width: 400px;
-  } */
   h3 {
     padding: 5px;
   }
