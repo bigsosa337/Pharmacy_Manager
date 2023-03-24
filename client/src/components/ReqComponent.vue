@@ -17,6 +17,7 @@
                               :items="items"
                               label="Name"
                               v-model="item.name"
+                              :rules="[value => !!value || 'This field is required.']"
                               required
                               >
                             </v-select>
@@ -26,6 +27,8 @@
                             <v-text-field  label="Price" class="input" 
                             type="number"
                             v-model="item.quantity"
+                            :rules="[value => !!value || 'This field is required.']"
+                            required
                             ></v-text-field>
                         </div>
                         <v-btn  class="mt-8 mr-4" color="success" @click="addRow">+</v-btn>
@@ -87,6 +90,9 @@ export default {
             }
         },
         async submitForm() {
+            if(!this.$refs.forms.validate) {
+                return false
+            }
             const data = {
                 nume: this.form.nameOfPatient,
                 meds: this.form.meds,

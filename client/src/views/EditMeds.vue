@@ -76,6 +76,15 @@
     },
     methods: {
       async updateForm() {
+        if(!this.post.nume &&
+        !this.post.producator &&
+        this.post.gramaj &&
+        !this.post.dataExp &&
+        this.post.stock
+        ) {
+          alert("complete the required inputs!")
+        return false;
+        }
         const formData = new FormData();
         formData.append('nume', this.post.nume);
         formData.append('gramaj', this.post.gramaj);

@@ -3,12 +3,11 @@
         <v-row no-gutters>
             <v-col sm="10" class="pa-4 mx-auto" >
                 <v-card class="pa-2" >
-                    <h2>{{ post.nume }} {{ post.producator }} </h2>
+                    <h2 class="pa-3" >{{ post.nume }} - {{ post.producator }} </h2>
                     <!-- <v-img :src="`/${post.image}`" height="250"></v-img> -->
                     <v-card-actions class="pb-0" >
                         <v-row class="mt-1 mx-1" >
                             <v-col sm="2">
-                                <v-btn small variant="outlined" color="primary">{{ post.varsta }}</v-btn>
                             </v-col>
                             <v-col sm="10" class="d-flex justify-end">
                                 <v-btn color="warning" variant="outlined" @click="edit">Edit</v-btn>

@@ -42,14 +42,3 @@ export default {
 }
 
 </script>
-
-<style scoped>
-.pa-1 {
-    /* margin: 10px 0px 15px 0px; */
-    /* display:inline-block; */
-    /* justify-items: center;
-    align-content: center;
-    justify-content: center; */
-}
-
-</style>

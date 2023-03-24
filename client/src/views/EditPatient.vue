@@ -22,7 +22,7 @@
                >
               </v-select>
               <v-container v-if="adresaSecundara">
-                <v-text-field v-model="post.adresa2" :rules="rules" label="Adresa Secundara" required class="input"
+                <v-text-field v-model="post.adresa2"  label="Adresa Secundara" required class="input"
                 ></v-text-field>
                 <v-select
                 :items="items"
@@ -33,7 +33,7 @@
               </v-select>
                 
               </v-container>
-              <v-text-field v-model="post.varsta" :rules="[v => !!v || 'Required']" label="Varsta" required class="input"
+              <v-text-field v-model="post.varsta" :rules="rules" label="Varsta" required class="input"
                 ></v-text-field>
                 <v-text-field v-model="post.telefon" :rules="rules" label="Numar telefon" required class="input"
                 ></v-text-field>
