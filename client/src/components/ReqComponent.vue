@@ -7,7 +7,7 @@
                 >
                 <v-text-field label="Patient Name" v-model="form.nameOfPatient" disabled >
                 </v-text-field>
-                <v-container class="pa-5" v-for="(item, index) in form.meds" :key="index">
+                <v-container ref="form" class="pa-5" v-for="(item, index) in form.meds" :key="index">
                     <v-row class="mb-5">
                         <h3>Item {{ index }}</h3>
                     </v-row>
@@ -31,9 +31,11 @@
                             required
                             ></v-text-field>
                         </div>
+                        <span class="addDelBtns">
                         <v-btn  class="mt-8 mr-4" color="success" @click="addRow">+</v-btn>
                         <br>
                         <v-btn class="mt-8" color="error" variant="outlined" @click="removeRow(index)" >x</v-btn>
+                        </span>
                 </v-container>
                 <v-btn
                 color="default"
@@ -68,7 +70,7 @@ export default {
         try {
             this.nameOfPatient = this.$route.params.patientName;
             const response = await API.getAllMeds();
-            let itemArray = response.map(item => item.nume)
+            let itemArray = response.map(item => item.name)
             console.log(itemArray)
 
             // Assign the value of itemArray to this.itemss
@@ -90,11 +92,8 @@ export default {
             }
         },
         async submitForm() {
-            if(!this.$refs.forms.validate) {
-                return false
-            }
             const data = {
-                nume: this.form.nameOfPatient,
+                name: this.form.nameOfPatient,
                 meds: this.form.meds,
                 status: this.form.status
             };
@@ -124,9 +123,24 @@ export default {
 }
 .div1 {
     flex: 12;
-    /* display: flex; */
     align-content: center;
     justify-content: center;
     margin: 0px 15px 0px 0px;
+}
+.addDelBtns {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-bottom: 20px;
+}
+
+@media only screen and (max-width: 700px){
+    .pa-5 {
+        display: block;
+    }
+    .addDelBtns {
+        display: flex;
+        padding: 0;
+    }
 }
 </style>
