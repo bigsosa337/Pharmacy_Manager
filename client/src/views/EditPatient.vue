@@ -6,36 +6,36 @@
           <v-card class="pa-5">
             <v-card-title>Edit Patient</v-card-title>
             <v-form ref="form" @submit.prevent="updateForm" class="pa-5" enctype="multipart/form-data" method="post">
-               <v-text-field v-model="post.nume" :rules="rules" label="Nume"  class="input"
+               <v-text-field v-model="post.name" :rules="rules" label="name"  class="input"
                ></v-text-field>
-               <v-text-field v-model="post.prenume" :rules="rules" label="Prenume"  class="input"
+               <v-text-field v-model="post.firstname" :rules="rules" label="firstname"  class="input"
                ></v-text-field>
                <v-text-field v-model="post.cnp" :rules="rules" label="CNP"  class="input"
                ></v-text-field>
-               <v-text-field v-model="post.adresa" :rules="rules" label="adresa" required class="input"
+               <v-text-field v-model="post.address" :rules="rules" label="address" required class="input"
                ></v-text-field>
                <v-select
                :items="items"
-               label="Tip adresa"
-               v-model="post.tipadresa"
+               label="Tip address"
+               v-model="post.addresstype"
                required
                >
               </v-select>
-              <v-container v-if="adresaSecundara">
-                <v-text-field v-model="post.adresa2"  label="Adresa Secundara" required class="input"
+              <v-container v-if="addressSecundara">
+                <v-text-field v-model="post.address2"  label="address Secundara" required class="input"
                 ></v-text-field>
                 <v-select
                 :items="items"
-                label="Tip Adresa"
-                v-model="post.tipadresa2"
+                label="Tip address"
+                v-model="post.addresstype2"
                 required
                 >
               </v-select>
                 
               </v-container>
-              <v-text-field v-model="post.varsta" :rules="rules" label="Varsta" required class="input"
+              <v-text-field v-model="post.age" :rules="rules" label="age" required class="input"
                 ></v-text-field>
-                <v-text-field v-model="post.telefon" :rules="rules" label="Numar telefon" required class="input"
+                <v-text-field v-model="post.phone" :rules="rules" label="Numar telefon" required class="input"
                 ></v-text-field>
                 <v-btn type="submit" class="mt-3" color="success">Update Patient</v-btn>
             </v-form>
@@ -56,19 +56,19 @@
   
     data() {
       return {
-        adresaSecundara: true,
+        addressSecundara: true,
         rules: [(value) =>!!value || "This field is required!"],
-        items: [ 'Acasa', 'Munca', 'adresa Alternativa', 'Alta'],
+        items: [ 'Home', 'Work', 'Alternative', 'Other'],
         post: {
-          nume: "",
-          prenume: "",
+          name: "",
+          firstname: "",
           cnp: "",
-          adresa: "",
-          tipadresa: "",
-          telefon: "",
-          varsta: "",
-          adresa2: "",
-          tipadresa2: "",
+          address: "",
+          addresstype: "",
+          phone: "",
+          age: "",
+          address2: "",
+          addresstype2: "",
         },
           image: "",
       }
@@ -80,15 +80,15 @@
     methods: {
       async updateForm() {
         const formData = new FormData();
-        formData.append('nume', this.post.nume);
-        formData.append('prenume', this.post.prenume);
+        formData.append('name', this.post.name);
+        formData.append('firstname', this.post.firstname);
         formData.append('cnp', this.post.cnp);
-        formData.append('adresa', this.post.adresa);
-        formData.append('tipadresa', this.post.tipadresa);
-        formData.append('adresa2', this.post.adresa2);
-        formData.append('tipadresa2', this.post.tipadresa2);
-        formData.append('telefon', this.post.telefon);
-        formData.append('varsta', this.post.varsta);
+        formData.append('address', this.post.address);
+        formData.append('addresstype', this.post.addresstype);
+        formData.append('address2', this.post.address2);
+        formData.append('addresstype2', this.post.addresstype2);
+        formData.append('phone', this.post.phone);
+        formData.append('age', this.post.age);
 
         if(this.$refs.form.validate()) {
           const response = await API.updatePost(this.$route.params.id, formData);

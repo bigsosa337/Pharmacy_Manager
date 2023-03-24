@@ -5,7 +5,7 @@
                 <v-form ref="form" @submit.prevent="submitForm"
                 enctype="multipart/form-data" method="post" 
                 >
-                <v-text-field label="Patient Name" v-model="form.nume" disabled >
+                <v-text-field label="Patient Name" v-model="form.name" disabled >
                 </v-text-field>
                 <v-container class="pa-5" v-for="(item, index) in form.meds" :key="index">
                     <v-row class="mb-5">
@@ -63,7 +63,7 @@ export default {
     async created() {
         try {
             const response = await API.getAllMeds();
-            let itemArray = response.map(item => item.nume)
+            let itemArray = response.map(item => item.name)
             console.log(itemArray)
             // Assign the value of itemArray to this.itemss
             this.items = itemArray;
@@ -91,7 +91,7 @@ export default {
         },
         async submitForm() {
             const data = {
-                nume: this.form.nameOfPatient,
+                name: this.form.nameOfPatient,
                 meds: this.form.meds,
                 status: this.form.status
             };

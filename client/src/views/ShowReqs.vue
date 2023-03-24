@@ -1,6 +1,6 @@
 <template>
     <v-container id="postrow">
-        <h1>MEDICINE Requests</h1>
+        <h1>REQUESTS</h1>
     </v-container>
     <v-container id="postrow">
         <span class="delAllBtn" >
@@ -13,7 +13,7 @@
             <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
                 <v-card class="pa-1" >
                     <v-card-title>
-                        {{ post.nume }}
+                        {{ post.name }}
                     </v-card-title>
                     <v-card-subtitle>
                         Status: {{ post.status }}

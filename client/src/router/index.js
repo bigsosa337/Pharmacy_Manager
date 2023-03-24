@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AddPatient from '../views/AddPatient.vue'
-import HomePage from '../views/HomePage'
+import PatientList from '../views/PatientList'
 import PatientPage from '../views/PatientPage'
 import EditPatient from '../views/EditPatient'
 import MedList from '../views/MedList'
@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomePage
+    component: PatientList
   },
   {
     path: '/post/:id',

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const medsSchema = mongoose.Schema({
-    nume: String,
-    producator: String,
-    gramaj: String,
-    forma: String,
-    dataExp: String,
+    name: String,
+    Manufacturer: String,
+    Dosage: String,
+    medtype: String,
+    dateOfExp: String,
     stock: Number,
     created: {
         type: Date,

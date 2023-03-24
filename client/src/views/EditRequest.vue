@@ -33,21 +33,6 @@ export default {
             }
     }
     },
-    async created() {
-        // const response = await API.getSingleRequest(this.$route.params.id)
-        // this.requests = response
-    },
-    props: {
-    //   patientName: {
-    //     type: String,
-    //     required: true,
-    //   }
-    },
-    computed: {
-    //   patientName() {
-    //     return this.$route.params.patientName
-    //   },
-    },
     methods: {
         async updateRequest() {
 

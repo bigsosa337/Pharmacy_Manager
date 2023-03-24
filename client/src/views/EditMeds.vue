@@ -7,11 +7,11 @@
             <v-card-title>Edit Meds</v-card-title>
             <v-divider></v-divider>
             <v-form ref="form" @submit.prevent="updateForm" class="pa-5" enctype="multipart/form-data" method="post">
-                 <v-text-field  v-model="post.nume" :rules="rules" label="Nume Medicament"  class="input"
+                 <v-text-field  v-model="post.name" :rules="rules" label="name Medicament"  class="input"
                  ></v-text-field>
                  
                  <VueDatePicker 
-                 v-model="post.dataExp"
+                 v-model="post.dateOfExp"
                  close-on-auto-apply
                  :enable-time-picker="false"
                  placeholder="Select Date"
@@ -19,13 +19,13 @@
                 <br>
                 <v-select
                :items="items"
-               label="Forma/Tip Pastila"
-               v-model="post.forma"
+               label="medtype/Tip Pastila"
+               v-model="post.medtype"
                >
               </v-select>
-              <v-text-field  v-model="post.producator" :rules="rules" label="Producator"  class="input"
+              <v-text-field  v-model="post.Manufacturer" :rules="rules" label="Manufacturer"  class="input"
                  ></v-text-field>
-                 <v-text-field type="number" v-model="post.gramaj" :rules="rules" label="Gramaj"  class="input"
+                 <v-text-field type="number" v-model="post.Dosage" :rules="rules" label="Dosage"  class="input"
                  ></v-text-field>
                  <v-text-field type="number" v-model="post.stock" :rules="rules" label="Stoc" required class="input"
                  ></v-text-field>
@@ -61,11 +61,11 @@
       ],
       items: [ 'Rotund', 'Cilindru', 'Praf', 'Lichid'],
         post: {
-          nume: "",
-          producator: "",
-          gramaj: "",
-          forma: "",
-          dataExp: "",
+          name: "",
+          Manufacturer: "",
+          Dosage: "",
+          medtype: "",
+          dateOfExp: "",
           stock: "",
         },
       }
@@ -76,23 +76,14 @@
     },
     methods: {
       async updateForm() {
-        if(!this.post.nume &&
-        !this.post.producator &&
-        this.post.gramaj &&
-        !this.post.dataExp &&
-        this.post.stock
-        ) {
-          alert("complete the required inputs!")
-        return false;
-        }
         const formData = new FormData();
-        formData.append('nume', this.post.nume);
-        formData.append('gramaj', this.post.gramaj);
-        formData.append('forma', this.post.forma);
-        formData.append('dataExp', this.post.dataExp);
+        formData.append('name', this.post.name);
+        formData.append('Dosage', this.post.Dosage);
+        formData.append('medtype', this.post.medtype);
+        formData.append('dateOfExp', this.post.dateOfExp);
         formData.append('stock', this.post.stock);
-        formData.append('producator', this.post.producator);
-        console.log(this.post.producator)
+        formData.append('Manufacturer', this.post.Manufacturer);
+        console.log(this.post.Manufacturer)
   
         if(this.$refs.form.validate()) {
           const response = await API.updateMed(this.$route.params.id, formData);

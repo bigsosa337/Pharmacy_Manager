@@ -3,8 +3,7 @@
         <v-row no-gutters>
             <v-col sm="10" class="pa-4 mx-auto" >
                 <v-card class="pa-2" >
-                    <h2 class="pa-3" >{{ post.nume }} - {{ post.producator }} </h2>
-                    <!-- <v-img :src="`/${post.image}`" height="250"></v-img> -->
+                    <h2 class="pa-3" >{{ post.name }} - {{ post.Manufacturer }} </h2>
                     <v-card-actions class="pb-0" >
                         <v-row class="mt-1 mx-1" >
                             <v-col sm="2">
@@ -18,15 +17,15 @@
                     </v-card-actions>
                     <v-card-subtitle class="headline">
                         <br>
-                        <h3>ID Produs: {{ post._id }}</h3>
+                        <h3>ID: {{ post._id }}</h3>
                     </v-card-subtitle>
                     <v-card-text class="grey--text">
-                        <p>Nume: {{ post.nume }}</p>
-                        <p>Producator: {{ post.producator }}</p>
-                        <p>Gramaj: {{ post.gramaj }}</p>
-                        <p>Forma pastilei: {{ post.forma }}</p>
-                        <p>Data de expirare: {{ post.dataExp }}</p>
-                        <p>Stoc disponibil: {{ post.stock }}</p>
+                        <p>Medicine: {{ post.name }}</p>
+                        <p>Manufacturer: {{ post.Manufacturer }}</p>
+                        <p>Dosage: {{ post.Dosage }}</p>
+                        <p>medtype pastilei: {{ post.medtype }}</p>
+                        <p>Expiration Date: {{ post.dateOfExp }}</p>
+                        <p>Available Stock: {{ post.stock }}</p>
                     </v-card-text>
                 </v-card>
             </v-col>

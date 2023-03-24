@@ -4,24 +4,24 @@
     </v-container>
     <v-container id="postrow">
         <span class="delAllBtn" >
-        <v-btn  @click="deleteSelected" v-if="posts.length"
+        <v-btn  @click="deleteSelected" v-if="patients.length"
         class="ma-3"
         color="error"
         >Delete Selected</v-btn>
         </span>
         <v-row no-gutters>
-            <v-col sm="4" class="pa-3"  v-for="post in posts" :key="post._id" >
+            <v-col sm="4" class="pa-3"  v-for="post in patients" :key="post._id" >
                 <v-card class="pa-1" >
                     <v-card-title class="headline" >
-                        {{ post.nume }} {{ post.prenume }}
+                        {{ post.name }} {{ post.firstname }}
                     </v-card-title>
                     <v-card-subtitle class="pb-2">
-                        Age: {{ post.varsta }}
+                        Age: {{ post.age }}
                     </v-card-subtitle>
                     <v-divider></v-divider>
 
                     <v-card-text class="py-0">
-                        <p class="pt-3" >Phone: {{ post.telefon }}</p>
+                        <p class="pt-3" >Phone: {{ post.phone }}</p>
                     </v-card-text>
                     <v-btn class="ml-4 mt-3" small variant="outlined" color="indigo"
                     :to="{ name:'post', params: {id: post._id}}"
@@ -38,16 +38,16 @@
 import API from '../api'
 
 export default {
-    name: "HomePage",
+    name: "PatientList",
     data() {
         return {
-            posts:[],
+            patients:[],
             selectedItems: [],
 
         };
     },
     async created() {
-        this.posts = await API.getAllPost();
+        this.patients = await API.getAllPost();
     },
     methods: {
         async deleteSelected() {

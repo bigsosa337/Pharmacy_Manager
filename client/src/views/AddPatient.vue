@@ -7,40 +7,40 @@
           <v-card-title>Add New Patient</v-card-title>
           <v-divider></v-divider>
           <v-form ref="form" @submit.prevent="submitForm" class="pa-5 " enctype="multipart/form-data" method="post">
-               <v-text-field v-model="post.nume" :rules="[value => !!value || 'This field is required.']" label="Nume" required class="input"
+               <v-text-field v-model="post.name" :rules="[value => !!value || 'This field is required.']" label="Last Name" required class="input"
                ></v-text-field>
-               <v-text-field v-model="post.prenume" :rules="rules" label="Prenume"  class="input"
+               <v-text-field v-model="post.firstname" :rules="rules" label="Surname"  class="input"
                ></v-text-field>
                <v-text-field v-model="post.cnp" :rules="rules" label="CNP"  class="input"
                ></v-text-field>
-               <v-text-field v-model="post.adresa" :rules="rules" label="Adresa" required class="input"
+               <v-text-field v-model="post.address" :rules="rules" label="Address" required class="input"
                ></v-text-field>
                <v-select
                :items="items"
-               label="Tip Adresa"
-               v-model="post.tipadresa"
+               label="Address type"
+               v-model="post.addresstype"
                required
                >
               </v-select>
-              <v-container v-if="adresaSecundara">
-                <v-text-field v-model="post.adresa2" label="Adresa" required class="input"
+              <v-container v-if="addressSecundara">
+                <v-text-field v-model="post.address2" label="Address" required class="input"
                 ></v-text-field>
                 <v-select
                 :items="items"
-                label="Tip Adresa"
-                v-model="post.tipadresa2"
+                label="Address type"
+                v-model="post.addresstype2"
                 required
                 >
               </v-select>
                 
               </v-container>
               <v-row class="d-flex justify-center align-center mt-4">
-                <v-btn class="mb-5 " @click="showSecondaryAdress">Adauga Adresa Secundara</v-btn>
+                <v-btn class="mb-5 " variant="outlined" @click="showSecondaryAdress">Add Secondary Address</v-btn>
               </v-row>
                 <br>
-              <v-text-field v-model="post.varsta" :rules="rules" label="Varsta" required class="input"
+              <v-text-field v-model="post.age" :rules="rules" label="Age" required class="input"
                 ></v-text-field>
-                <v-text-field v-model="post.telefon" :rules="rules" label="Numar telefon" required class="input"
+                <v-text-field v-model="post.phone" :rules="rules" label="Phone" required class="input"
                 ></v-text-field>
                 <v-btn type="submit" class="mt-3" color="primary">Add Patient</v-btn>
               </v-form>
@@ -59,50 +59,50 @@ export default {
   name: 'AddPatient',
   data() {
     return {
-      adresaSecundara: false,
+      addressSecundara: false,
       rules: [
       value => !!value || 'Form is required'
     ],
-    items: [ 'Acasa', 'Munca', 'Adresa Alternativa', 'Alta'],
+    items: [ 'Home', 'Work', 'Alternative', 'Other'],
       post: {
-        nume: "",
-        prenume: "",
+        name: "",
+        firstname: "",
         cnp: "",
-        adresa: "",
-        tipadresa: "",
-        telefon: "",
-        varsta: "",
-        adresa2: "",
-        tipadresa2: "",
+        address: "",
+        addresstype: "",
+        phone: "",
+        age: "",
+        address2: "",
+        addresstype2: "",
       },
     }
   },
   methods: {
     showSecondaryAdress() {
-      this.adresaSecundara = !this.adresaSecundara
+      this.addressSecundara = !this.addressSecundara
     },
 
     async submitForm() {
-      if(!this.post.nume && 
-      !this.post.prenume && 
-      !this.post.telefon &&
-      !this.post.varsta &&
-      !this.post.adresa &&
+      if(!this.post.name && 
+      !this.post.firstname && 
+      !this.post.phone &&
+      !this.post.age &&
+      !this.post.address &&
       !this.post.cnp
       ) {
         alert("complete the required inputs!")
         return false;
       } else {
         const formData = new FormData();
-        formData.append('nume', this.post.nume);
-        formData.append('prenume', this.post.prenume);
+        formData.append('name', this.post.name);
+        formData.append('firstname', this.post.firstname);
         formData.append('cnp', this.post.cnp);
-        formData.append('adresa', this.post.adresa);
-        formData.append('tipadresa', this.post.tipadresa);
-        formData.append('adresa2', this.post.adresa2);
-        formData.append('tipadresa2', this.post.tipadresa2);
-        formData.append('telefon', this.post.telefon);
-        formData.append('varsta', this.post.varsta);
+        formData.append('address', this.post.address);
+        formData.append('addresstype', this.post.addresstype);
+        formData.append('address2', this.post.address2);
+        formData.append('addresstype2', this.post.addresstype2);
+        formData.append('phone', this.post.phone);
+        formData.append('age', this.post.age);
   
         const response = await API.addPost(formData);
         this.$router.push({ name:'home', params: {message: response.message} });

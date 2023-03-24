@@ -6,7 +6,7 @@ const medSchema = mongoose.Schema({
 });
 
 const reqSchema = mongoose.Schema({
-    nume: String,
+    name: String,
     meds: [medSchema],
     status: String,
     created: {

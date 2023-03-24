@@ -1,8 +1,8 @@
 <template>
     <v-card  class="pa-1 ma-3" :to="{ name:'med', params: {id: post._id}}">
                     <v-card-title class="headline" >
-                            {{ med.nume}} <br>
-                             de la: {{ med.producator }}
+                            {{ med.name}} <br>
+                             de la: {{ med.Manufacturer }}
                     </v-card-title>
                     <v-card-subtitle>
                         ID: {{ med._id }}
@@ -26,7 +26,7 @@ import API from '../api'
 
 
 export default {
-    name: "HomePage",
+    name: "MedComponent",
     props: {
         med: Object,
     },

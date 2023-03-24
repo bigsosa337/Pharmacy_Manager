@@ -1,6 +1,6 @@
 <template>
     <v-container id="postrow">
-      <h1 class="display-4" color="error">Medications</h1>
+      <h1 class="display-4" color="error">MEDICATIONS</h1>
     </v-container>
     <v-container id="postrow">
       <span class="delAllBtn" >
@@ -13,15 +13,15 @@
         <v-col sm="4" class="pa-3 mt-3" v-for="post in posts" :key="post._id">
           <v-card class="pa-1">
             <v-card-title>
-              {{ post.nume }}
+              {{ post.name }}
             </v-card-title>
             <v-card-subtitle>
-              Id: {{ post._id }}
+              Id: {{ post._id }} <br>
+              <v-divider class="mt-2 pb-2"></v-divider>
+              Stock: {{ post.stock }}
+              <v-divider class="mt-2 pb-2"></v-divider>
             </v-card-subtitle>
             <v-card-subtitle>
-              <div v-for="med in post.meds" :key="med">
-                {{ med.name }} - {{ med.quantity }}
-              </div>
               <v-switch class="pl-3" color="orange" label="Select for deletion" v-model="selectedItems" :value="post._id" type="checkbox"></v-switch>
             </v-card-subtitle>
             <v-btn class="ml-4 mt-3 mb-3" small variant="outlined" color="indigo"
@@ -49,6 +49,7 @@
     },
     async created() {
       this.posts = await API.getAllMeds();
+      console.log(this.posts)
     },
     methods: {
       async deleteSelected() {

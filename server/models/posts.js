@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
 const postSchema = mongoose.Schema({
-    nume: String,
-    prenume: String,
+    name: String,
+    firstname: String,
     cnp: Number,
-    adresa: String,
-    tipadresa: String,
-    telefon: String,
-    varsta: Number,
-    adresa2: String,
-    tipadresa2: String,
+    address: String,
+    addresstype: String,
+    phone: String,
+    age: Number,
+    address2: String,
+    addresstype2: String,
     created: {
         type: Date,
         default: Date.now

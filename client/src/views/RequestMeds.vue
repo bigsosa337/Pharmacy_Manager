@@ -21,19 +21,10 @@ export default {
         ReqComponent,
     },
     props: {
-      // patientName: {
-      //   type: String,
-      //   required: true,
-      // }
     },
-    // computed: {
-    //   patientName() {
-    //     return this.$route.params.patientName
-    //   },
-    // },
   data() {
     return {
-      
+      patientName: this.$route.params.patientName
     }
   },
 }

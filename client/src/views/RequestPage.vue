@@ -3,7 +3,7 @@
         <v-row>
             <v-col>
                 <v-card class="pa-3">
-                  <h2 class="pa-3">Request for: {{ post.nume }}</h2>
+                  <h2 class="pa-3">Request for: {{ post.name }}</h2>
                   <v-divider></v-divider>
                         <v-row class="mt-1 mx-1">
                             <v-col sm="6">
@@ -89,7 +89,7 @@ export default {
        async approveRequest() {
         const medsInPost = this.post.meds;
         const insufficientStock = medsInPost.some(medInPost => {
-            const medFound = this.meds.find(med => med.nume === medInPost.name);
+            const medFound = this.meds.find(med => med.name === medInPost.name);
             return !medFound || medFound.stock < medInPost.quantity;
         });
         if (insufficientStock) {
@@ -97,7 +97,7 @@ export default {
             return;
         }
         for (const medInPost of medsInPost) {
-            const medFound = this.meds.find(med => med.nume === medInPost.name);
+            const medFound = this.meds.find(med => med.name === medInPost.name);
             console.log(medFound)
             var medId = medFound._id
             console.log(medFound._id)
