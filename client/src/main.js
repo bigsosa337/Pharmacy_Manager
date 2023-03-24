@@ -1,13 +1,15 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import vuetify from './plugins/vuetify'
+// import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
-import 'vuetify/dist/vuetify.min.css'
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
-import { VListItemContent } from 'vuetify';
 import { createDynamicForms } from '@asigloo/vue-dynamic-forms';
+import 'vuetify/styles';
+import { createVuetify } from 'vuetify';
+
+const vuetify = createVuetify();
 
 
 const VueDynamicForms = createDynamicForms({
@@ -17,7 +19,6 @@ const VueDynamicForms = createDynamicForms({
 const app = createApp(App)
 loadFonts()
 app.component('VueDatePicker', VueDatePicker);
-app.component('VListItemContent', VListItemContent);
 
 
 

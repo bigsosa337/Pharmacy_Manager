@@ -1,59 +1,54 @@
 <template>
-  <v-app id="inspire">
-  <v-app-bar app color="indigo" dark>
-      <v-avatar class="mx-3" size="40">
-        <v-icon size="24">mdi-heart-pulse</v-icon>
-      </v-avatar>
-      <v-toolbar-title>PharmaMGR</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn to="/" >Patients</v-btn>
-      <v-btn to="/add-post" >Add Patient</v-btn>
-      <v-btn to="/meds" >Medications</v-btn>
-      <v-btn to="/add-meds" >Add Meds</v-btn>
-      <v-btn to="/reqs" dark>Requests</v-btn>
-    </v-app-bar>
-  
-  <v-main class="bg-grey-lighten-3" id="mainbody">
-            <router-view/>
-    </v-main>
-  </v-app>
+  <div class="app">
+    <Navigation />
+    <!--
+      crude method of spacing the nav and content
+      however it better for code readability
+      (better than css or vuetify class css)
+    -->
+    <br> <br> <br> <br>
+    <RouterView />
+  </div>
+  <div  >
+  </div>
 </template>
-
 <script>
-// import AddPatient from './views/AddPatient.vue'
-  export default {
-    data: () => ({
-      links: [
-        'Patient List',
-        'Add Patient',
-        'Meds List',
-        'Add Meds',
-      ],
-    }),
+import Navigation from './components/Navigation.vue'
+
+export default {
+  name: 'App',
+  components: {
+    Navigation,
   }
+};
 </script>
 
 <style>
-#mainbody{
-  /* background-image: url("https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1544&q=80"); */
-  /* -webkit-filter:blur(5px); */
-  background-position: center;
-  background-size: cover;
+h1 {
+  color: white;
+  font-weight: bold;
 }
-#body {
-  backdrop-filter: blur(5px);
-  padding:55px;
-  filter: drop-shadow(0 0 0.75rem rgb(83, 83, 83));
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Raleway", sans-serif;
+  font-weight: 400;
+  /* backdrop-filter: blur(30px); */
+  /* border-radius: 10px; */
 
 }
-.router  {
-  margin: 0px 5px 0px 5px;
-  text-decoration: none;
+.app {
+  /* background generated with shutterstock AI :D */
+  background-image: url(@/assets/bg.jpg.jpg);
+  background-size: cover;
+  min-height: 100vh;
+  position: relative;
+  background-color: #f1f1f1;
 }
-.v-toolbar__title {
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: white;
+.container {
+  padding: 0 20px;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 </style>

@@ -1,6 +1,8 @@
 <template>
-    <v-container>
+    <v-container id="postrow">
         <h1>PATIENTS</h1>
+    </v-container>
+    <v-container id="postrow">
         <span class="delAllBtn" >
         <v-btn  @click="deleteSelected" v-if="posts.length"
         class="ma-3"
@@ -8,7 +10,7 @@
         >Delete Selected</v-btn>
         </span>
         <v-row no-gutters>
-            <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id" >
+            <v-col sm="4" class="pa-3"  v-for="post in posts" :key="post._id" >
                 <v-card class="pa-1" >
                     <v-card-title class="headline" >
                         {{ post.nume }} {{ post.prenume }}
@@ -24,8 +26,8 @@
                     <v-btn class="ml-4 mt-3" small variant="outlined" color="indigo"
                     :to="{ name:'post', params: {id: post._id}}"
                     >Open</v-btn>
-                    <v-checkbox class="checkForDel" label="Select for deletion" v-model="selectedItems" :value="post._id" ></v-checkbox>
-                </v-card>
+                    <v-switch class="pl-3" color="orange" label="Select for deletion" v-model="selectedItems" :value="post._id" type="checkbox"></v-switch>
+                  </v-card>
             </v-col>
         </v-row>
     </v-container>
@@ -62,8 +64,13 @@ export default {
 
 </script>
 
-<style scoped>
-
+<style >
+#postrow {
+  backdrop-filter: blur(40px);
+  border-radius: 10px;
+  filter: drop-shadow(1px 5px 10px #00000041);
+  margin-bottom: 10px;
+}
 h1 {
   font-size: 40px;
   text-align: center;
@@ -99,9 +106,12 @@ h1 {
 .delAllBtn {
   display: flex;
   justify-content: center;
+  filter: drop-shadow(1px 5px 10px #ffffff9f);
+
+}
+.checkForDel label {
+  font-size: 14px;
+  color: #555;
 }
 
-.v-checkbox__label {
-  font-size: 14px;
-}
 </style>

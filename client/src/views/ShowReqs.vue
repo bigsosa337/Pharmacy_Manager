@@ -1,7 +1,14 @@
 <template>
-    <v-container>
+    <v-container id="postrow">
         <h1>MEDICINE Requests</h1>
-        <v-btn  @click="deleteSelected" >Delete Selected</v-btn>
+    </v-container>
+    <v-container id="postrow">
+        <span class="delAllBtn" >
+        <v-btn  @click="deleteSelected" v-if="posts.length"
+        class="ma-3"
+        color="error"
+        >Delete Selected</v-btn>
+        </span>
         <v-row class="pt-3">
             <v-col sm="4" class="pa-3" v-for="post in posts" :key="post._id">
                 <v-card class="pa-1" >
@@ -15,14 +22,14 @@
                         <div v-for="med in post.meds" :key="med">
                             {{ med.name }} - {{ med.quantity }}
                         </div>
-                        <v-checkbox label="Select for deletion" v-model="selectedItems" :value="post._id" ></v-checkbox>
-
+                        
                     </v-card-subtitle>
-                    <v-btn class="ml-4 mt-3 mb-3" small variant="outlined" color="indigo"
+                    <v-btn class="ml-4 mt-5 mb-3" small variant="outlined" color="indigo"
                     :to="{ name:'req-page', params: { id: post._id }}"
                     >
                         Open
                     </v-btn>
+                    <v-switch class="pl-3" color="orange" label="Select for deletion" v-model="selectedItems" :value="post._id" type="checkbox"></v-switch>
                 </v-card>
             </v-col>
         </v-row>

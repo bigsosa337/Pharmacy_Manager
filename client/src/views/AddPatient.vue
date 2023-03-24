@@ -98,9 +98,9 @@ export default {
       formData.append('telefon', this.post.telefon);
       formData.append('varsta', this.post.varsta);
 
+      const response = await API.addPost(formData);
+      this.$router.push({ name:'home', params: {message: response.message} });
       if(this.$refs.form.validate()) {
-        const response = await API.addPost(formData);
-        this.$router.push({ name:'home', params: {message: response.message} });
       } else {
         alert("TYPE IN THE REQUIRED FORMS");
       }
