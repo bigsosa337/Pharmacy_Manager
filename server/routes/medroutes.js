@@ -22,7 +22,6 @@ let upload = multer({
 //BECAUSE EVEN IF I DON'T UPLOAD PICTURES, I STILL NEED MIDDLEWARE FOR UPLOADING DATA
 
 
-
 router.get('/', API.fetchAllmeds);
 router.get('/:id', API.fetchMedsById);
 router.post('/', upload, API.postMed);
