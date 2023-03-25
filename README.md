@@ -1,4 +1,4 @@
-***Pharmacy Manager is a project that helps manage a pharmacy.***
+***Pharmacy Manager is a project that helps manage a pharmacy.***  
 **I have used node version 16**
 # Getting Started  
 ### To get started with this project, follow these steps:
