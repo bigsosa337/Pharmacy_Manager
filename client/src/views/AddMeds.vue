@@ -59,7 +59,7 @@
           return 'This field is required.'
         },
       ],
-      items: [ 'Rotund', 'Cilindru', 'Praf', 'Lichid'],
+      items: [ 'Round', 'Cylinder', 'Liquid', 'Powder'],
         post: {
           name: "",
           Manufacturer: "",

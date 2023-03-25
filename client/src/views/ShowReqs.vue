@@ -15,6 +15,7 @@
                     <v-card-title>
                         {{ post.name }}
                     </v-card-title>
+                    <v-divider class="pb-2"></v-divider>
                     <v-card-subtitle>
                         Status: {{ post.status }}
                     </v-card-subtitle>
@@ -24,6 +25,7 @@
                         </div>
                         
                     </v-card-subtitle>
+                    <v-divider class="pt-3"></v-divider>
                     <v-btn class="ml-4 mt-5 mb-3" small variant="outlined" color="indigo"
                     :to="{ name:'req-page', params: { id: post._id }}"
                     >
